@@ -1,36 +1,28 @@
 /********************************************************************************
 *********************************************************************************
-Title: Pluralsight program in node.js to implement package installer
+Title: Deliverable #2: Coding Exercise - Pluralsight program in node.js to implement package installer
 Author: Sheetal Krishna
+
 *********************************************************************************
 *********************************************************************************/
 
-const readline = require('readline').createInterface({
-	input: process.stdin,
-	output: process.stdout 
-});
-
-function init() {
-	readline.question('Enter the name of the file containing the array of package dependencies in the form: ["xyz: abc", "abc: ", "lmn: pqr","pqr: "] where abc and pqr are dependencies for xyz and lmn respectively:\n', (arrayOfDeps) => {
-		//var dependencies = arrayOfDeps.replace("[","").replace("]","").replace(/'/g,"").replace(/"/g,"").split(","); //manually parsing string as array
+function init() {	
+		var file = process.argv[2];
 		try {
 			var fs = require('fs');
-			var contents = fs.readFileSync(arrayOfDeps, 'utf8'); //read the input file
+			var contents = fs.readFileSync(file, 'utf8'); //read the input file
 			var dependencies = JSON.parse(contents); //parse the file contents as an array
-			// console.log(dependencies);
-			readline.close();
-			checkAndInstallDependencies(dependencies);
+			//var dependencies = contents.replace("[","").replace("]","").replace(/'/g,"").replace(/"/g,"").split(","); //manually parsing string as array
+			return dependencies;			
 		} catch (e) {
-			// console.log(e);
-			console.log('\nPlease ensure that the file exists and the array is in the form: ["xyz: abc", "abc: ", "lmn: pqr","pqr: "] where abc and pqr are dependencies for xyz and lmn respectively.')
-			readline.close();
+			console.log(e);
+			console.log('\n\nPlease ensure that the file exists and the array is in the form: ["xyz: abc", "abc: ", "lmn: pqr","pqr: "] where abc and pqr are dependencies for xyz and lmn respectively.')
 		}
-	});
 }
 
 
 function checkAndInstallDependencies(dependencies) {
-	var dictOfDeps = {};
+	var dictOfDeps = {}; //dictionary of dependencies, a waiting queue in the form "package required":[list of dependent packages]
 	var output = [],
 		outputDict = {};
 	for (var dep of dependencies) {
@@ -71,4 +63,5 @@ function addAndRemove(item, outputDict, output, dictOfDeps) {
 	}
 }
 
-init();
+var dependencies = init();
+checkAndInstallDependencies(dependencies);
