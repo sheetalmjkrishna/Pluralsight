@@ -47,7 +47,8 @@ The following input should be rejected because it contains a cycle (Leetmeme -> 
 ______________________________________________________________________
 
 HOW TO RUN THIS CODE:
-node program.js <nameOfFileThatContainsTheDependencyArray>
-eg: node program.js input.txt
-
+node program.js <nameOfFileThatContainsTheDependencyArray> <br>
+eg: node program.js input.txt <br>
+The function that accepts an array of strings defining packages and their dependencies and returns/outputs a comma separated string of package names in the order of install is:  checkAndInstallDependencies(dependencies) <br>
+The program.js file contains a complete (standalone) program which includes reading the input and printing the output in a formatted manner. The function.js file contains just the function which isn't a standalone program and accepts the dependencies and prints the output in the requested format and nothing else.
 ______________________________________________________________________
