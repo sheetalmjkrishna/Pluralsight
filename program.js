@@ -45,9 +45,10 @@ function checkAndInstallDependencies(dependencies) {
 	} 
 	else { //no dependencies left, all packages install successfully
 		console.log("Valid Input, no cycles present!\n");
-		console.log(output);
+		console.log(output.join(', '));		
 	}
 	console.log("\n______________________________________\n");
+	return output.join(', ');
 }
 
 
