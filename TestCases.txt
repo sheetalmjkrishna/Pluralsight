@@ -1,0 +1,66 @@
+//No dependencies
+[
+ "KittenService: ",
+ "Leetmeme: ",
+ "Cyberportal: ",
+ "CamelCaser: ",
+ "pq: ",
+ "Fraudstream: ",
+ "Ice: "
+]
+
+
+//Some packages with dependencies, some without but no cycles
+[
+ "KittenService: ",
+ "Leetmeme: Cyberportal ",
+ "Cyberportal: Ice",
+ "CamelCaser: KittenService",
+ "pq: Fraudstream",
+ "Fraudstream: ",
+ "Ice: Fraudstream "
+]
+
+//All packages with dependencies, except 1 but no cycles
+[
+ "KittenService: ",
+ "Leetmeme: Cyberportal ",
+ "Cyberportal: Ice",
+ "CamelCaser: KittenService",
+ "pq: Fraudstream",
+ "Fraudstream: CamelCaser",
+ "Ice: Fraudstream "
+]
+
+//Multiple packages with the same dependency
+[
+ "KittenService: ",
+ "Leetmeme: Cyberportal ",
+ "Cyberportal: Ice",
+ "CamelCaser: KittenService",
+ "pq: Fraudstream",
+ "Fraudstream: KittenService",
+ "Ice: Fraudstream "
+]
+
+
+//Cycle Present
+[
+ "KittenService: ",
+ "Leetmeme: Cyberportal ",
+ "Cyberportal: Ice",
+ "CamelCaser: Fraudstream",
+ "pq: Fraudstream",
+ "Fraudstream: CamelCaser",
+ "Ice: Fraudstream "
+]
+
+//Cycle Present
+[
+"KittenService: ",
+"Leetmeme: Cyberportal",
+"Cyberportal: Ice",
+"CamelCaser: KittenService",
+"Fraudstream: ",
+"Ice: Leetmeme"
+]
